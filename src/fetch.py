@@ -14,7 +14,7 @@ import os
 from Bio import Entrez, SeqIO
 
 # NCBI asks for a real email so they can contact you if something goes wrong.
-Entrez.email = "soumojitghosh3706@gmail.com"   # <-- CHANGE THIS
+Entrez.email = "yourmail@gmail.com"   # <-- CHANGE THIS
 
 GENOME_ID = "NC_000913.3"        # E. coli K-12 MG1655 reference genome
 GENOME_FILE = "ecoli_genome.gb"  # local copy, so we download only once
