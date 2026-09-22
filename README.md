@@ -6,7 +6,7 @@ A Python/Biopython pipeline that designs and ranks SpCas9 guide RNAs for a targe
 
 **Demo target:** *lacZ* in *E. coli* K-12 MG1655 (NCBI `NC_000913.3`)
 
-> Developed on an Android tablet using Pydroid 3 and Google Colab.
+> Developed on an Android tablet using Pydroid 3.
 
 ## Why this project
 
