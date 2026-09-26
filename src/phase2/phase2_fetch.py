@@ -28,7 +28,7 @@ import pandas as pd
 from Bio import Entrez, SeqIO
 from Bio.Seq import Seq
 
-Entrez.email = "soumojitghosh3706@gmail.com"   # <-- CHANGE THIS
+Entrez.email = "your_mail@gmail.com"   # <-- CHANGE THIS
 
 # ---- Settings ----------------------------------------------------------
 GENE_NAME = "PIP4K2C"
