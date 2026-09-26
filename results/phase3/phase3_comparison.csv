@@ -1,0 +1,6 @@
+guide,exon,our_score,our_verdict,mit_specificity,cfd_specificity,off_targets,flag,comparison
+CAATGCCAAATCGATCACGG,3,100.0,Clean,95,97,0-0-0-2-27,,Agreement
+CTTCGTTGTCCACACTGACT,5,100.0,Clean,79,92,0-0-0-15-77,,Agreement
+ATGCTTCTTCTTGGTCTTGG,1,90.0,Clean,68,71,0-0-0-19-239,,Agreement
+TCAGATCAATGAGCTCAGCC,2,97.3,Clean,67,84,0-0-2-18-168,Inefficient,Disagreement -- CRISPOR finds closer off-targets than our screen did
+GAGCTGGCCTTAAAGTCATC,2,100.0,Clean,44,90,0-1-1-14-79,,Disagreement -- CRISPOR finds closer off-targets than our screen did
