@@ -1,0 +1,21 @@
+guide,verdict,details,genomic_hits,unique_loci,pam_positive_loci
+GAAGCATTTCGTGCAGCAGA,Low risk,"2 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",2,2,0
+GAGCTGGCCTTAAAGTCATC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+TAAGGCCAGCTCCAAGATCA,Low risk,"1 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",1,1,0
+GTTCAAGGAGTATTGTCCCC,Low risk,"1 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",1,1,0
+CAATGCCAAATCGATCACGG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+CTTCGTTGTCCACACTGACT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+ACTTCCTGTGCACAGGAAGA,Low risk,"4 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",4,4,0
+TCAGATCAATGAGCTCAGCC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+TTTCCTTATCGCTGGCTTCC,Low risk,"1 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",1,1,0
+ATGCTTCTTCTTGGTCTTGG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+ATGGACTACAGCCTTCTGCT,AT RISK,1 unique genomic locus/loci with canonical NGG PAM.,1,1,1
+GCACAGGAAGTATGACCTCA,Clean,No qualifying non-self genomic locus detected.,0,0,0
+AGGCATCCACGACATCATTC,Low risk,"2 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",2,2,0
+ATTGCCCACCCTTAAGGATA,Low risk,"1 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",1,1,0
+AGGATGAGTCAGAGGTGGAT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+ACAGGAACACACCCACCAGC,Low risk,"3 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",3,3,0
+CTCCTTGAACTTGAAATGAC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+CGGTACATCCCCAGGAACTG,AT RISK,1 unique genomic locus/loci with canonical NGG PAM.,1,1,1
+GGAGAAGCTGAAGAGAGATG,Low risk,"1 unique genomic sequence-match locus/loci, but none with canonical NGG PAM.",1,1,0
+GGACTCTCACCAAGTAATCT,Clean,No qualifying non-self genomic locus detected.,0,0,0

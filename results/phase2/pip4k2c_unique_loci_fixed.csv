@@ -1,0 +1,19 @@
+guide,accession,hit_title,locus_start,locus_end,hit_strand,best_mismatches,pam,has_pam,duplicate_record_count,locus_id
+ACAGGAACACACCCACCAGC,NG_023262,"Homo sapiens paired box 7 (PAX7), RefSeqGene on chromosome 1",27476,27495,-,1,ACA,False,1,NG_023262:27476-27495
+ACAGGAACACACCCACCAGC,NG_052845,"Homo sapiens mucin 6, oligomeric mucus/gel-forming (gene/pseudogene) (MUC6), RefSeqGene on chromosome 11",28299,28318,+,1,CCC,False,1,NG_052845:28299-28318
+ACAGGAACACACCCACCAGC,NG_157166,Homo sapiens ReSE screen-validated silencer GRCh37_chr1:18979869-18980025 (LOC129660127) on chromosome 1,207,226,-,1,ACA,False,1,NG_157166:207-226
+ACTTCCTGTGCACAGGAAGA,NG_009442,"Homo sapiens ERCC excision repair 6, chromatin remodeling factor (ERCC6), RefSeqGene (LRG_465) on chromosome 10",56275,56294,-,2,TGT,False,1,NG_009442:56275-56294
+ACTTCCTGTGCACAGGAAGA,NG_012682,"Homo sapiens versican (VCAN), RefSeqGene on chromosome 5",77247,77266,+,2,CTC,False,1,NG_012682:77247-77266
+ACTTCCTGTGCACAGGAAGA,NG_029119,"Homo sapiens semaphorin 6D (SEMA6D), RefSeqGene on chromosome 15",215286,215305,+,2,CTT,False,1,NG_029119:215286-215305
+ACTTCCTGTGCACAGGAAGA,NG_029784,"Homo sapiens estrogen related receptor gamma (ESRRG), RefSeqGene on chromosome 1",56733,56752,+,2,AGT,False,1,NG_029784:56733-56752
+AGGCATCCACGACATCATTC,NG_041786,"Homo sapiens cytochrome c oxidase assembly factor 8 (COA8), RefSeqGene on chromosome 14",2815,2834,-,2,TGA,False,1,NG_041786:2815-2834
+AGGCATCCACGACATCATTC,NG_042856,"Homo sapiens anoctamin 3 (ANO3), RefSeqGene on chromosome 11",357667,357686,+,2,CAG,False,1,NG_042856:357667-357686
+ATGGACTACAGCCTTCTGCT,NG_012161,"Homo sapiens phosphatidylinositol-4-phosphate 5-kinase type 1 gamma (PIP5K1C), RefSeqGene on chromosome 19",53438,53457,+,1,GGG,True,1,NG_012161:53438-53457
+ATTGCCCACCCTTAAGGATA,NG_012222,"Homo sapiens interleukin 21 receptor (IL21R), RefSeqGene (LRG_731) on chromosome 16",46549,46568,+,2,GTC,False,1,NG_012222:46549-46568
+CGGTACATCCCCAGGAACTG,NG_008935,"Homo sapiens potassium voltage-gated channel subfamily Q member 1 (KCNQ1), RefSeqGene (LRG_287) on chromosome 11",102204,102223,-,2,AGG,True,1,NG_008935:102204-102223
+GAAGCATTTCGTGCAGCAGA,NG_009874,"Homo sapiens CHM Rab escort protein (CHM), RefSeqGene (LRG_699) on chromosome X",28037,28056,-,2,,False,1,NG_009874:28037-28056
+GAAGCATTTCGTGCAGCAGA,NG_042217,"Homo sapiens sodium voltage-gated channel beta subunit 2 (SCN2B), RefSeqGene on chromosome 11",6797,6816,+,2,GAA,False,1,NG_042217:6797-6816
+GGAGAAGCTGAAGAGAGATG,NG_074109,Homo sapiens Sharpr-MPRA regulatory region 2931 (LOC121048738) on chromosome 4,469,488,+,1,CTT,False,1,NG_074109:469-488
+GTTCAAGGAGTATTGTCCCC,NG_033118,"Homo sapiens coiled-coil and HOOK domain protein 88C (CCDC88C), RefSeqGene on chromosome 14",36763,36782,+,2,ATT,False,1,NG_033118:36763-36782
+TAAGGCCAGCTCCAAGATCA,NG_030347,"Homo sapiens neuron navigator 2 (NAV2), RefSeqGene on chromosome 11",607078,607097,+,2,GAG,False,1,NG_030347:607078-607097
+TTTCCTTATCGCTGGCTTCC,NG_029982,"Homo sapiens protein kinase cGMP-dependent 1 (PRKG1), RefSeqGene (LRG_1135) on chromosome 10",757315,757334,-,2,TCC,False,1,NG_029982:757315-757334
