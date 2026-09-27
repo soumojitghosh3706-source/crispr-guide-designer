@@ -82,7 +82,7 @@ PIP4K2C is a poorly-characterized lipid kinase -- chosen deliberately as an unde
 | 4 | `TCAGATCAATGAGCTCAGCC` | AGG | + | 2 | 97.3 | Clean |
 | 5 | `ATGCTTCTTCTTGGTCTTGG` | AGG | - | 1 | 90.0 | Clean |
 
-Full 20-guide table in `results/phase2/pip4k2c_summary.md`.
+Full 10-guide table in `results/phase2/pip4k2c_summary.md`.
 
 ---
 
@@ -130,7 +130,7 @@ Same five-script structure as PIP4K2C (`src/phase2/` scripts, retargeted), plus 
 
 ![MUTYH ranking](results/case3/mutyh_ranking.png)
 
-Full 20-guide table in `results/case3/mutyh_summary.md`.
+Full 10-guide table in `results/case3/mutyh_summary.md`.
 
 ---
 
