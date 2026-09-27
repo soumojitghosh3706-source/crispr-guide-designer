@@ -1,0 +1,21 @@
+guide,exon,our_score,our_verdict,mit_specificity,cfd_specificity,off_targets,flag,comparison
+TGGGCTACTATTCTCGTGGC,7,90.0,Clean,90,97,0-0-0-5-63,,Agreement
+TGGTGGATGGCAACGTAGCA,9,90.0,Clean,88,92,0-0-0-8-89,,Agreement
+TGCAGGGTCTCTGCTGTACG,8,80.0,Clean,87,92,0-0-0-8-99,,Agreement
+TCACCACACTCCTCCACGTC,11,69.6,Clean,82,93,0-0-1-6-106,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+TGGGATCAGCACCAATGGCT,9,90.0,Clean,80,88,0-0-2-14-129,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+GCCAAAGGCGATAGAGGCAA,8,90.0,Clean,76,81,0-0-2-10-130,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+AGGTGGCACTGTCCAGTGTT,12,71.9,Clean,75,90,0-0-4-12-138,Inefficient,Disagreement -- CRISPOR finds closer off-targets than our screen did
+CACAGGAGGTGAATCAACTC,7,96.0,Clean,73,92,0-0-1-18-187,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+CCTCTGCACCAGCAGAATTT,12,83.8,Clean,72,89,0-0-5-23-173,Inefficient,Disagreement -- CRISPOR finds closer off-targets than our screen did
+TCAAGTATATGGGCTGGCCT,14,73.3,Clean,71,87,0-0-1-20-124,Inefficient,Disagreement -- CRISPOR finds closer off-targets than our screen did
+AGTGGTCAACTTCCCCAGAA,12,87.7,Clean,68,83,0-0-2-17-160,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+TTGCGCTGAAGCTGCTCTGA,13,70.1,Clean,68,84,0-0-1-16-116,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+AGGAACAGCTCTTAGCCTCA,11,93.6,Clean,68,81,0-0-6-32-175,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+ATCAGGTGGTAGAGGAGCTA,8,96.0,Clean,66,80,0-0-2-24-159,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+AGATTTCAACCAAGCAGCCA,10,89.1,Clean,64,85,0-0-3-36-161,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+AAGATGAGATGGACCTGGAC,4,100.0,Clean,64,83,0-1-4-24-208,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+TTGGTTGAAATCTCCTGGCC,10,100.0,Clean,63,81,0-0-3-15-147,Inefficient,Disagreement -- CRISPOR finds closer off-targets than our screen did
+AGGCTGTTCCAGAACACAGG,12,75.6,Clean,61,81,0-0-7-24-205,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+GCTTGATGTGAGAGAAGGTG,14,70.0,Clean,61,76,0-0-1-25-242,,Disagreement -- CRISPOR finds closer off-targets than our screen did
+CCAGAGCTGCTGGGAAACAA,9,90.0,Clean,55,74,0-0-6-48-307,,Disagreement -- CRISPOR finds closer off-targets than our screen did
