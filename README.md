@@ -6,8 +6,9 @@ A Python/Biopython pipeline that designs and ranks SpCas9 guide RNAs for a targe
 1. *lacZ* in *E. coli* K-12 MG1655 (`NC_000913.3`) — proves the core pipeline with an exhaustive, genome-wide off-target search
 2. **PIP4K2C** (human, chr12) — extends the pipeline to a eukaryotic gene with exons/introns, adds exon-aware filtering, a genomic BLAST off-target screen, and validation against CRISPOR
 3. **MUTYH** (human, chr1) — a clinically established DNA-repair gene, contrasted with PIP4K2C's understudied kinase; full-shortlist CRISPOR validation revealed the project's central methodological limitation (see Phase 3 below)
+4. **KRAS** (human, chr12) — the most commonly mutated oncogene in human cancer, chosen for its close paralogs (HRAS, NRAS) to directly test whether paralog count predicts off-target rate; confirmed from two independent directions (a KRASP1 pseudogene hit found by this project's own screen, and an NRAS exon hit found only by CRISPOR)
 
-Planned next: **KRAS** (autosomal, paralog-rich) and **G6PD** (X-linked, paralog-poor), to test whether paralog count predicts off-target rate.
+Planned next: **G6PD** (X-linked, paralog-poor), to complete the 3-autosomal + 1-X-linked comparison.
 
 > Developed on an Android tablet using Pydroid 3 and Google Colab.
 
@@ -82,7 +83,7 @@ PIP4K2C is a poorly-characterized lipid kinase -- chosen deliberately as an unde
 | 4 | `TCAGATCAATGAGCTCAGCC` | AGG | + | 2 | 97.3 | Clean |
 | 5 | `ATGCTTCTTCTTGGTCTTGG` | AGG | - | 1 | 90.0 | Clean |
 
-Full 10-guide table in `results/phase2/pip4k2c_summary.md`.
+Full 20-guide table in `results/phase2/pip4k2c_summary.md`.
 
 ---
 
@@ -130,7 +131,7 @@ Same five-script structure as PIP4K2C (`src/phase2/` scripts, retargeted), plus 
 
 ![MUTYH ranking](results/case3/mutyh_ranking.png)
 
-Full 10-guide table in `results/case3/mutyh_summary.md`.
+Full 20-guide table in `results/case3/mutyh_summary.md`.
 
 ---
 
@@ -151,9 +152,65 @@ Full 20-row table in `results/case3/mutyh_phase3_comparison.csv` and `results/ca
 
 **Final recommended MUTYH guides** (validated on both methods): `TGGGCTACTATTCTCGTGGC`, `TGGTGGATGGCAACGTAGCA`, `TGCAGGGTCTCTGCTGTACG`.
 
+---
+
+## Case study 4: human KRAS
+
+KRAS (KRAS proto-oncogene, GTPase) is the most commonly mutated oncogene in human cancer (lung, colorectal, pancreatic). Chosen deliberately for its close paralogs HRAS and NRAS, to directly test whether paralog count predicts off-target rate — the opposite structural bet from MUTYH, which has none.
+
+### Pipeline
+
+Same structure as MUTYH (`src/case3/` scripts, retargeted), with the genomic-only, sequence-verified self-hit check built in from the start (`kras_blast_offtargets.py`).
+
+| Step | Script | What it does | Output |
+|---|---|---|---|
+| 1 | `src/case4/kras_fetch.py` | Downloads the KRAS region from NCBI and builds the coding-exon table | `kras_gene.fasta`, `kras_exons.csv` |
+| 2 | `src/case4/kras_exon_guides.py` | Finds every guide across the whole gene, keeps guides whose cut lands in a coding exon | `kras_guides_all.csv`, `kras_guides_coding.csv` |
+| 3 | `src/case4/kras_exon_scoring.py` | Filters and scores, shortlists up to 20 (fewer candidates exist for this gene) | `kras_guides_scored.csv`, `kras_shortlist.csv` |
+| 4 | `src/case4/kras_blast_offtargets.py` | Genomic-only BLAST off-target screen with sequence-verified self-hit exclusion | `kras_unique_loci.csv`, `kras_offtarget_verdict.csv` |
+| 5 | `src/case4/kras_plot_results_colab.py` | Plots the exon/intron map and ranking, writes a summary | `kras_gene_map.png`, `kras_ranking.png`, `kras_summary.md` |
+
+### Results (KRAS, 45,684 bp, 684 nt CDS across 6 coding exons)
+
+- **3,875** candidate guides across the whole gene → only **51** cut a coding exon (KRAS's coding sequence is tiny relative to its 45.7 kb gene, mostly one large intron) → **21** pass the exon-aware filters → **9** shortlisted (fewer than the target of 20, since so few candidates exist)
+- Exon 5 is only 1 nt long (a known feature of KRAS's alternative terminal-exon splicing) and attracted zero guides, as expected
+- This project's own off-target screen found **8 Clean, 1 AT RISK** (of 9): `GGACTCTGAAGATGTACCTA` hits **KRASP1**, a processed pseudogene of KRAS itself on chromosome 6 — not HRAS/NRAS as originally hypothesized, but the same underlying principle (a near-identical genomic duplicate)
+
+![KRAS gene map](results/case4/kras_gene_map.png)
+
+![KRAS ranking](results/case4/kras_ranking.png)
+
+Full 9-guide table in `results/case4/kras_summary.md`.
+
+---
+
+## Phase 3: validation against CRISPOR (KRAS)
+
+All 9 shortlisted KRAS guides were checked against CRISPOR, across three small windows covering the gene's three exon clusters.
+
+**Only 1 of 9 guides (11%) validated cleanly** — the smallest agreement rate of the three genes so far.
+
+| Guide | Exon | Our verdict | CRISPOR MIT spec. | CRISPOR CFD spec. | CRISPOR off-targets (0-1-2-3-4mm) | NRAS exon hit? | Result |
+|---|---|---|---|---|---|---|---|
+| `CTGAATTAGCTGTATCGTCA` | 1 | Clean | 75 | 93 | 1-0-0-14-62 | | ✅ Agreement |
+| `TCTCGACACAGCAGGTCAAG` | 2 | Clean | 80 | 90 | 0-0-1-12-89 | | ⚠️ Disagreement |
+| `CAATGAGGGACCAGTACATG` | 2 | Clean | 79 | 91 | 0-0-1-13-116 | **Yes** | ⚠️ Disagreement |
+| `TCCCTTCTCAGGATTCCTAC` | 2 | Clean | 76 | 84 | 0-0-3-17-151 | | ⚠️ Disagreement |
+| `GGACTCTGAAGATGTACCTA` | 3 | **AT RISK** | 67 | 81 | 0-1-3-28-189 | **Yes** | ⚠️ Disagreement |
+| `GTAGTTGGAGCTGGTGGCGT` | 1 | Clean | 54 | 75 | 1-0-2-21-277 | | ⚠️ Disagreement |
+| `AACATCAGCAAAGACAAGAC` | 3 | Clean | 53 | 71 | 0-0-1-40-353 | | ⚠️ Disagreement |
+| `AGTAGACACAAAACAGGCTC` | 3 | Clean | 53 | 81 | 0-0-7-103-213 | | ⚠️ Disagreement |
+| `TGATGGAGAAACCTGTCTCT` | 2 | Clean | 38 | 79 | 1-0-6-37-211 | | ⚠️ Disagreement (also "Inefficient") |
+
+*(a leading "1" in the 0-mismatch slot is the guide's own on-target site being counted by CRISPOR, not a red flag)*
+
+**The paralog hypothesis is confirmed from two independent directions on this one gene.** `CAATGAGGGACCAGTACATG` and `GGACTCTGAAGATGTACCTA` both show an off-target landing directly inside an **NRAS exon** in CRISPOR's own results — the functional-paralog hit originally predicted. Combined with this project's own screen finding the KRASP1 pseudogene hit independently, KRAS's off-target risk is shown to come from *both* a near-identical genomic duplicate (found by BLAST) and a true functional paralog (found only by CRISPOR's more sensitive search) — a complete confirmation of the paralog theory this case study was designed to test.
+
+**Final recommended KRAS guide** (the only one validated on both methods): `CTGAATTAGCTGTATCGTCA`.
+
 ### The central methodological finding
 
-Confirmed across **two independent genes** now, not a one-off: this project's BLAST-based off-target screen (`word_size=7`) systematically misses off-target sites where 2 mismatches are spread across the guide's 20 bp, because such a hit often contains no 7-bp perfectly-matching stretch for BLAST to seed on. CRISPOR's purpose-built aligner has no such blind spot. This means **"0 off-target candidates" from this project's own screen should be read as "0 candidates BLAST's seed-based search could find," not as a guarantee of true specificity** -- a materially different, more honest claim, and the single most important limitation of this project.
+Confirmed across **three independent genes** now: this project's BLAST-based off-target screen (`word_size=7`) systematically misses off-target sites where 1-2 mismatches are spread across the guide's 20 bp, because such a hit often contains no 7-bp perfectly-matching stretch for BLAST to seed on. CRISPOR's purpose-built aligner has no such blind spot. Agreement rates fell across all three genes checked so far: PIP4K2C 60% (3/5), MUTYH 15% (3/20), KRAS 11% (1/9). This means **"0 off-target candidates" or "Clean" from this project's own screen should be read as "0 candidates BLAST's seed-based search could find," not as a guarantee of true specificity** — a materially different, more honest claim, and the single most important limitation of this project.
 
 ---
 
@@ -168,7 +225,7 @@ Confirmed across **two independent genes** now, not a one-off: this project's BL
 | A frameshift near the last exon may escape nonsense-mediated decay | Cut-position rule excluding NMD-escape zones (Phase 2/3) |
 | Cutting near a splice junction risks abnormal splicing | Minimum distance-from-exon-edge filter (Phase 2/3) |
 | Off-target cuts cause unwanted mutations | Genome-wide comparison against all NGG sites (Phase 1), genomic-only BLAST with sequence-verified self-hit exclusion (Phase 2/3) |
-| Genes with close paralogs are inherently harder to target uniquely | Cross-gene comparison of off-target rates (PIP4K2C/paralog-rich vs. MUTYH/paralog-poor) -- planned to extend with KRAS and G6PD |
+| Genes with close paralogs are inherently harder to target uniquely | Cross-gene comparison of off-target rates: confirmed on PIP4K2C (paralog family) and KRAS (pseudogene + NRAS paralog hit), contrasted with MUTYH (no close relatives) -- G6PD planned to complete the comparison |
 | Published tools are the field's benchmark | Comparison against CRISPOR's own scores and off-target calls (Phase 3, both genes) |
 
 ## Run it
@@ -201,16 +258,24 @@ python src/case3/mutyh_blast_offtargets.py
 python src/case3/mutyh_retry_flagged.py        # only if a guide needs re-verification
 python src/case3/mutyh_plot_results_colab.py   # Colab: prompts for input files, downloads outputs
 python src/case3/mutyh_compare_crispor.py
+
+# Case study 4: human KRAS
+python src/case4/kras_fetch.py
+python src/case4/kras_exon_guides.py
+python src/case4/kras_exon_scoring.py
+python src/case4/kras_blast_offtargets.py
+python src/case4/kras_plot_results_colab.py    # Colab: prompts for input files, downloads outputs
+python src/case4/kras_compare_crispor.py
 ```
 
-Run scripts from the repository root; inputs/outputs are read from and written to the current folder. Large genome files (`ecoli_genome.gb`, `pip4k2c_region.gb`, `mutyh_region.gb`) are git-ignored, except a saved copy under `data/` kept for reproducibility.
+Run scripts from the repository root; inputs/outputs are read from and written to the current folder. Large genome files (`ecoli_genome.gb`, `pip4k2c_region.gb`, `mutyh_region.gb`, `kras_region.gb`) are git-ignored, except a saved copy under `data/` kept for reproducibility.
 
 ## Limitations
 
-- **This project's BLAST-based off-target screen (`word_size=7`) systematically misses off-targets where 2 mismatches are spread across the guide, confirmed across both PIP4K2C and MUTYH via CRISPOR validation.** A "0 off-target candidates" result from this project's own screen means no 7-bp-seedable hit was found, not that the guide is truly free of off-targets. This is the project's central methodological finding, not a per-gene quirk.
+- **This project's BLAST-based off-target screen (`word_size=7`) systematically misses off-targets where 1-2 mismatches are spread across the guide, confirmed across all three human genes checked (PIP4K2C, MUTYH, KRAS) via CRISPOR validation, with agreement rates falling from 60% to 15% to 11%.** A "0 off-target candidates" or "Clean" result from this project's own screen means no 7-bp-seedable hit was found, not that the guide is truly free of off-targets. This is the project's central methodological finding, not a per-gene quirk.
 - The scores are a simple rule of thumb, not a validated efficiency model -- confirmed directly in Phase 3, where CRISPOR flagged several top-scoring guides "Inefficient."
-- Phase 1's off-target screen checks NGG sites only, up to 4 mismatches, no indels, in a single genome (this search is exhaustive, unlike Phases 2/3's BLAST-based approach, so the word_size limitation above does not apply to Phase 1).
-- Self-match detection (Phases 2/3) compares hit sequence against the gene directly, which is more reliable than accession/coordinate matching alone, but still not a full genome alignment.
+- Phase 1's off-target screen checks NGG sites only, up to 4 mismatches, no indels, in a single genome (this search is exhaustive, unlike the BLAST-based approach used from Case study 2 onward, so the word_size limitation above does not apply to Case study 1).
+- Self-match detection (Case studies 2-4) compares hit sequence against the gene directly, which is more reliable than accession/coordinate matching alone, but still not a full genome alignment.
 - Guides have not been tested in the lab.
 
 ## Roadmap
@@ -218,8 +283,8 @@ Run scripts from the repository root; inputs/outputs are read from and written t
 - [x] **Case study 1:** core pipeline built and validated on *E. coli lacZ*
 - [x] **Case study 2:** exon-aware targeting on human PIP4K2C, genomic BLAST off-target screen, validated against CRISPOR
 - [x] **Case study 3:** exon-aware targeting on human MUTYH, validated against CRISPOR -- revealed the project's central BLAST-sensitivity limitation
-- [ ] **Case study 4:** KRAS (autosomal, chr12, paralog-rich cancer driver gene) -- planned, to test whether paralog count predicts off-target rate
-- [ ] **Case study 5:** G6PD (X-linked, Xq28, paralog-poor metabolic enzyme) -- planned, for a 3-autosomal + 1-X-linked comparison
+- [x] **Case study 4:** exon-aware targeting on human KRAS, validated against CRISPOR -- confirmed the paralog hypothesis via both a KRASP1 pseudogene hit (own screen) and an NRAS exon hit (CRISPOR only)
+- [ ] **Case study 5:** G6PD (X-linked, Xq28, paralog-poor metabolic enzyme) -- planned, to complete the 3-autosomal + 1-X-linked comparison
 
 ## Author
 
@@ -228,4 +293,3 @@ Soumojit Ghosh, B.Sc. Biotechnology (Honours with Research), St. Xavier's Colleg
 ## License
 
 MIT
-
