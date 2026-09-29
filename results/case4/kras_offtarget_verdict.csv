@@ -1,0 +1,10 @@
+guide,verdict,details,genomic_hits,unique_loci,pam_positive_loci
+CAATGAGGGACCAGTACATG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+TGATGGAGAAACCTGTCTCT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+TCTCGACACAGCAGGTCAAG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GGACTCTGAAGATGTACCTA,AT RISK,1 unique genomic locus/loci with canonical NGG PAM.,1,1,1
+TCCCTTCTCAGGATTCCTAC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+AGTAGACACAAAACAGGCTC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GTAGTTGGAGCTGGTGGCGT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+CTGAATTAGCTGTATCGTCA,Clean,No qualifying non-self genomic locus detected.,0,0,0
+AACATCAGCAAAGACAAGAC,Clean,No qualifying non-self genomic locus detected.,0,0,0

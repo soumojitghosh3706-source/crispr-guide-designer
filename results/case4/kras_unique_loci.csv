@@ -1,0 +1,2 @@
+guide,accession,hit_title,locus_start,locus_end,hit_strand,best_mismatches,pam,has_pam,duplicate_record_count,locus_id
+GGACTCTGAAGATGTACCTA,NG_001154,"Homo sapiens KRas proto-oncogene, GTPase pseudogene 1 (KRASP1) on chromosome 6",532,551,+,1,TGG,True,1,NG_001154:532-551
