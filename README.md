@@ -8,6 +8,7 @@ The overall workflow of CRISPR-GuideDesigner, from NCBI gene-region retrieval an
 ![CRISPR-GuideDesigner Workflow](results/workflow.png)
 
 **Figure:** General workflow of CRISPR-GuideDesigner. The pipeline processes one gene at a time, identifies coding-exon-targeting guides, ranks them using custom scoring, performs BLAST-based off-target screening, and validates shortlisted guides against CRISPOR before final selection.
+
 **Case studies:**
 1. *lacZ* in *E. coli* K-12 MG1655 (`NC_000913.3`) — proves the core pipeline with an exhaustive, genome-wide off-target search
 2. **PIP4K2C** (human, chr12) — extends the pipeline to a eukaryotic gene with exons/introns, adds exon-aware filtering, a genomic BLAST off-target screen, and validation against CRISPOR
