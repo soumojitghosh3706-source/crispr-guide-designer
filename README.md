@@ -5,7 +5,7 @@ CRISPR-GuideDesigner Workflow
 
 The overall workflow of CRISPR-GuideDesigner, from NCBI gene-region retrieval and exon-aware guide design through BLAST-based off-target screening, CRISPOR validation, and final guide selection.
 
-"CRISPR-GuideDesigner Workflow" (workflow.png)
+!"CRISPR-GuideDesigner Workflow" (results/workflow.png)
 
 «Figure: General workflow of CRISPR-GuideDesigner. The pipeline processes one gene at a time, identifies coding-exon-targeting guides, ranks them using custom scoring, performs BLAST-based off-target screening, and validates shortlisted guides against CRISPOR before final selection.»
 
