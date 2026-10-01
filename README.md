@@ -361,7 +361,7 @@ python src/case5/g6pd_plot_results_colab.py    # Colab: prompts for input files,
 python src/case5/g6pd_compare_crispor.py
 ```
 
-Run scripts from the repository root; inputs/outputs are read from and written to the current folder. Large genome files (`ecoli_genome.gb`, `pip4k2c_region.gb`, `mutyh_region.gb`, `kras_region.gb`) are git-ignored, except a saved copy under `data/` kept for reproducibility.
+Run scripts from the repository root; inputs/outputs are read from and written to the current folder. Large genome files (`ecoli_genome.gb`, `pip4k2c_region.gb`, `mutyh_region.gb`, `kras_region.gb`) are git-ignored.
 
 ## Limitations
 
