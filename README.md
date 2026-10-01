@@ -14,9 +14,9 @@ The overall workflow of CRISPR-GuideDesigner, from NCBI gene-region retrieval an
 2. **PIP4K2C** (human, chr12) — extends the pipeline to a eukaryotic gene with exons/introns, adds exon-aware filtering, a genomic BLAST off-target screen, and validation against CRISPOR
 3. **MUTYH** (human, chr1) — a clinically established DNA-repair gene, contrasted with PIP4K2C's understudied kinase; full-shortlist CRISPOR validation revealed the project's central methodological limitation (see Phase 3 below)
 4. **KRAS** (human, chr12) — the most commonly mutated oncogene in human cancer, chosen for its close paralogs (HRAS, NRAS) to directly test whether paralog count predicts off-target rate; confirmed from two independent directions (a KRASP1 pseudogene hit found by this project's own screen, and an NRAS exon hit found only by CRISPOR)
-5. **G6PD** (human, chrX) — an X-linked, paralog-poor gene completing the 3-autosomal + 1-X-linked comparison; all 20 shortlisted guides validated against CRISPOR (5 of 20 agree), which shows the BLAST sensitivity gap is **not** explained by paralog count
+5. **G6PD** (human, chrX) — an X-linked, paralog-poor gene completing the 3-autosomal + 1-X-linked comparison; all 20 shortlisted guides validated against CRISPOR (5 of 20 agree), which shows the BLAST sensitivity gap is **not** explained by paralog count.
 
-> Developed on an Android tablet using Pydroid 3 and Google Colab.
+
 
 ## Why this project
 
