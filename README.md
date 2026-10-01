@@ -1,4 +1,4 @@
-# CRISPR-GuideDesigner
+ # CRISPR-GuideDesigner
 
 A Python/Biopython pipeline that designs and ranks SpCas9 guide RNAs for a target gene, screens them for off-target sites, and validates the top picks against a published tool (CRISPOR).
 
@@ -7,8 +7,7 @@ A Python/Biopython pipeline that designs and ranks SpCas9 guide RNAs for a targe
 2. **PIP4K2C** (human, chr12) — extends the pipeline to a eukaryotic gene with exons/introns, adds exon-aware filtering, a genomic BLAST off-target screen, and validation against CRISPOR
 3. **MUTYH** (human, chr1) — a clinically established DNA-repair gene, contrasted with PIP4K2C's understudied kinase; full-shortlist CRISPOR validation revealed the project's central methodological limitation (see Phase 3 below)
 4. **KRAS** (human, chr12) — the most commonly mutated oncogene in human cancer, chosen for its close paralogs (HRAS, NRAS) to directly test whether paralog count predicts off-target rate; confirmed from two independent directions (a KRASP1 pseudogene hit found by this project's own screen, and an NRAS exon hit found only by CRISPOR)
-
-Planned next: **G6PD** (X-linked, paralog-poor), to complete the 3-autosomal + 1-X-linked comparison.
+5. **G6PD** (human, chrX) — an X-linked, paralog-poor gene completing the 3-autosomal + 1-X-linked comparison; all 20 shortlisted guides validated against CRISPOR (5 of 20 agree), which shows the BLAST sensitivity gap is **not** explained by paralog count
 
 > Developed on an Android tablet using Pydroid 3 and Google Colab.
 
@@ -188,7 +187,7 @@ Full 9-guide table in `results/case4/kras_summary.md`.
 
 All 9 shortlisted KRAS guides were checked against CRISPOR, across three small windows covering the gene's three exon clusters.
 
-**Only 1 of 9 guides (11%) validated cleanly** — the smallest agreement rate of the three genes so far.
+**Only 1 of 9 guides (11%) validated cleanly** — the smallest agreement rate of the genes checked.
 
 | Guide | Exon | Our verdict | CRISPOR MIT spec. | CRISPOR CFD spec. | CRISPOR off-targets (0-1-2-3-4mm) | NRAS exon hit? | Result |
 |---|---|---|---|---|---|---|---|
@@ -204,33 +203,175 @@ All 9 shortlisted KRAS guides were checked against CRISPOR, across three small w
 
 *(a leading "1" in the 0-mismatch slot is the guide's own on-target site being counted by CRISPOR, not a red flag)*
 
-**The paralog hypothesis is confirmed from two independent directions on this one gene.** `CAATGAGGGACCAGTACATG` and `GGACTCTGAAGATGTACCTA` both show an off-target landing directly inside an **NRAS exon** in CRISPOR's own results — the functional-paralog hit originally predicted. Combined with this project's own screen finding the KRASP1 pseudogene hit independently, KRAS's off-target risk is shown to come from *both* a near-identical genomic duplicate (found by BLAST) and a true functional paralog (found only by CRISPOR's more sensitive search) — a complete confirmation of the paralog theory this case study was designed to test.
+**On this one gene, the paralog mechanism is confirmed from two independent directions.** `CAATGAGGGACCAGTACATG` and `GGACTCTGAAGATGTACCTA` both show an off-target landing directly inside an **NRAS exon** in CRISPOR's own results — the functional-paralog hit originally predicted. Combined with this project's own screen finding the KRASP1 pseudogene hit independently, KRAS's off-target risk comes from *both* a near-identical genomic duplicate (found by BLAST) and a true functional paralog (found only by CRISPOR's more sensitive search). Whether paralog count predicts off-target risk *across genes* is a separate question, taken up after the G6PD case study below.
 
 **Final recommended KRAS guide** (the only one validated on both methods): `CTGAATTAGCTGTATCGTCA`.
 
-### The central methodological finding
+---
 
-Confirmed across **three independent genes** now: this project's BLAST-based off-target screen (`word_size=7`) systematically misses off-target sites where 1-2 mismatches are spread across the guide's 20 bp, because such a hit often contains no 7-bp perfectly-matching stretch for BLAST to seed on. CRISPOR's purpose-built aligner has no such blind spot. Agreement rates fell across all three genes checked so far: PIP4K2C 60% (3/5), MUTYH 15% (3/20), KRAS 11% (1/9). This means **"0 off-target candidates" or "Clean" from this project's own screen should be read as "0 candidates BLAST's seed-based search could find," not as a guarantee of true specificity** — a materially different, more honest claim, and the single most important limitation of this project.
+## Case study 5: human G6PD
+
+G6PD (glucose-6-phosphate dehydrogenase) sits on the X chromosome (Xq28); its deficiency (G6PD deficiency, "favism") is among the most common human enzyme deficiencies. Chosen as the **X-linked, paralog-poor** contrast to KRAS (its closest paralog is H6PD), completing the planned 3-autosomal + 1-X-linked comparison.
+
+### Pipeline
+
+Same structure as KRAS (`src/case4/` scripts, retargeted), with the genomic-only, sequence-verified self-hit check built in from the start (`g6pd_blast_offtargets.py`), plus a standalone re-verification helper (`g6pd_retry_flagged.py`).
+
+| Step | Script | What it does | Output |
+|---|---|---|---|
+| 1 | `src/case5/g6pd_fetch.py` | Downloads the G6PD region from NCBI (minus strand, flipped to 5'->3' gene orientation) and builds the coding-exon table | `g6pd_gene.fasta`, `g6pd_exons.csv` |
+| 2 | `src/case5/g6pd_exon_guides.py` | Finds every guide across the whole gene, keeps guides whose cut lands in a coding exon | `g6pd_guides_all.csv`, `g6pd_guides_coding.csv` |
+| 3 | `src/case5/g6pd_exon_scoring.py` | Filters and scores, shortlists 20 | `g6pd_guides_scored.csv`, `g6pd_shortlist.csv` |
+| 4 | `src/case5/g6pd_blast_offtargets.py` | Genomic-only BLAST off-target screen with sequence-verified self-hit exclusion | `g6pd_unique_loci.csv`, `g6pd_offtarget_verdict.csv` |
+| 4b | `src/case5/g6pd_retry_flagged.py` | Re-BLASTs guides whose verdict could hide a swallowed error; self-hits are detected offline against the gene sequence and every hit gets a logged reason | `g6pd_retry_hits.csv`, `g6pd_retry_verdict.csv` |
+| 5 | `src/case5/g6pd_plot_results_colab.py` | Plots the exon/intron map and ranking, writes a summary | `g6pd_gene_map.png`, `g6pd_ranking.png`, `g6pd_summary.md` |
+
+### Results (G6PD, 16,180 bp, 1,548 nt CDS across 12 coding exons)
+
+- **3,057** candidate guides across the whole gene → **301** cut a coding exon → **138** pass the exon-aware filters → **20** shortlisted (the full target, unlike KRAS), spread across exons 1-8
+- Unlike the other genes, **no candidate failed the isoform filter**: every coding exon is shared by all curated isoforms. Candidates failed the other filters as follows (not exclusive): GC 120, motif 34, NMD-escape zone 30, splice-edge distance 16
+- No shortlisted guides in exons 9-12 (the 3' end): the position score favours cuts early in the coding sequence
+- This project's own off-target screen found **19 Clean, 1 Low risk, 0 AT RISK** (of 20). The Low risk guide (`GTGTGTATCCGACTGATGGA`) has one non-self locus with no adjacent PAM
+- **Provisional:** a re-check of 7 guides (`g6pd_retry_flagged.py`) reproduced every verdict, but in all 50 BLAST hits returned per guide, 100% were G6PD's own records. G6PD is so heavily sequenced that its own database entries can fill the hit list and push weaker off-target sites out of view, so "Clean" here is read as "no non-self hit within the first 50 alignments" (see Limitations)
+- **Exon numbering:** this project numbers *coding* exons from 1, so "exon 1" here is the first coding exon, which is very likely exon 2 in the clinical literature (G6PD's literature exon 1 is non-coding). Check against NCBI before comparing exon numbers with papers
+
+![G6PD gene map](results/case5/g6pd_gene_map.png)
+
+![G6PD ranking](results/case5/g6pd_ranking.png)
+
+| Rank | Guide (5'-3') | PAM | Strand | Exon | Score | Verdict |
+|---|---|---|---|---|---|---|
+| 1 | `CCCGAAAACACCTTCATCGT` | GGG | + | 3 | 100.0 | Clean |
+| 2 | `AGAAGGGCTCACTCTGTTTG` | CGG | - | 3 | 100.0 | Clean |
+| 3 | `GCAGGACTCGTGAATGTTCT` | TGG | - | 4 | 100.0 | Clean |
+| 4 | `ATCATCGTGGAGAAGCCCTT` | CGG | + | 5 | 100.0 | Clean |
+| 5 | `ATGTTGTCCCGGTTCCAGAT` | GGG | - | 6 | 100.0 | Clean |
+
+Ranked by verdict, then score. Full 20-guide table in `results/case5/g6pd_summary.md`.
 
 ---
 
-## How genetics and bioinformatics are integrated
+## Phase 3: validation against CRISPOR (G6PD)
 
-| Genetics | Bioinformatics |
-|---|---|
-| Cas9 needs an NGG PAM next to the target | String scan of both strands using reverse complement |
-| Guide efficiency depends on GC content | GC filter and scoring with `Bio.SeqUtils` |
-| Coding exons, especially early ones, give the best knockouts | GenBank feature parsing, exon-based filtering and ranking |
-| Mismatches near the PAM (seed region) block cutting most strongly | Seed-weighted mismatch counting (Phase 1) |
-| A frameshift near the last exon may escape nonsense-mediated decay | Cut-position rule excluding NMD-escape zones (Phase 2/3) |
-| Cutting near a splice junction risks abnormal splicing | Minimum distance-from-exon-edge filter (Phase 2/3) |
-| Off-target cuts cause unwanted mutations | Genome-wide comparison against all NGG sites (Phase 1), genomic-only BLAST with sequence-verified self-hit exclusion (Phase 2/3) |
-| Genes with close paralogs are inherently harder to target uniquely | Cross-gene comparison of off-target rates: confirmed on PIP4K2C (paralog family) and KRAS (pseudogene + NRAS paralog hit), contrasted with MUTYH (no close relatives) -- G6PD planned to complete the comparison |
-| Published tools are the field's benchmark | Comparison against CRISPOR's own scores and off-target calls (Phase 3, both genes) |
+All 20 shortlisted G6PD guides were checked against CRISPOR (hg38), across five small windows (gene positions 1350-1650, 11300-11750, 12100-12500, 13000-13600, 13850-14550) covering exons 1-8.
+Only 5 of 20 guides (25%) validated cleanly.
+Guide
+Exon
+Our score
+Our verdict
+CRISPOR MIT spec.
+CRISPOR CFD spec.
+CRISPOR off-targets (0-1-2-3-4mm)
+Known variant?
+Result
+ATCACGGACGTCATCTGAGT
+7
+96.5
+Clean
+94
+96
+0-0-0-4-26
 
-## Run it
+✅ Agreement
+CCCGAAAACACCTTCATCGT
+3
+100.0
+Clean
+94
+98
+0-0-0-3-34
+Yes
+✅ Agreement
+GATCTGGTCCTCACGGAACA
+5
+90.0
+Clean
+92
+94
+0-0-0-7-61
 
-```bash
+✅ Agreement
+TACCGCATCGACCACTACCT
+5
+90.0
+Clean
+89
+98
+0-0-0-3-24
+
+✅ Agreement
+GTGTGTATCCGACTGATGGA
+1
+100.0
+Low risk
+85
+92
+0-0-0-5-72
+
+✅ Agreement
+...15 more guides
+
+
+
+
+
+
+
+⚠️ Disagreement (5 also flagged "Inefficient")
+Full 20-row table in results/case5/g6pd_phase3_comparison.csv and results/case5/g6pd_phase3_summary.md.
+(In this run CRISPOR reported 0 in the 0-mismatch slot for every guide, so, unlike the KRAS run, no leading "1" appears; as before, only the 1- and 2-mismatch slots decide the verdict.)
+All 15 disagreements have 2-mismatch hits; one (AGAGGAGAAGCTCAAGCTGG, which also has MIT specificity 42) additionally has a 1-mismatch hit. The 5 guides CRISPOR flags "Inefficient" are all among the disagreements.
+This gap is not explained by paralogs. G6PD has only one paralog (H6PD), yet 15 of 20 guides still show close CRISPOR hits, and the genome-browser annotations CRISPOR displays (top three per guide) are mostly intergenic or intronic loci, none of them H6PD. Agreement for G6PD (5/20) is similar to MUTYH (3/20, no paralogs) and not clearly better than the paralog-rich KRAS (1/9).
+Variant caution: CCCGAAAACACCTTCATCGT passes both screens but overlaps a known sequence variant in CRISPOR's display. G6PD is highly polymorphic, so a guide overlapping a variant may fail to cut in carriers; three other shortlisted guides (CTTTGCCCGCAACTCCTATG, ATCATCGTGGAGAAGCCCTT, AGGAGATGTGGTTGGACAGC) carry one too.
+Final recommended G6PD guides (validated on both methods, no overlapping known variant): ATCACGGACGTCATCTGAGT, GATCTGGTCCTCACGGAACA, TACCGCATCGACCACTACCT, GTGTGTATCCGACTGATGGA.
+The central methodological finding
+Confirmed across four human genes now: this project's BLAST-based off-target screen (word_size=7) systematically misses off-target sites where 1-2 mismatches are spread across the guide's 20 bp, because such a hit often contains no 7-bp perfectly-matching stretch for BLAST to seed on. CRISPOR's purpose-built aligner has no such blind spot.
+Gene
+Paralogs
+Guides checked
+Validated cleanly
+PIP4K2C
+PIP4K2A/B family
+5 (top "Clean" picks)
+3/5 (60%)
+MUTYH
+none close
+20
+3/20 (15%)
+KRAS
+HRAS, NRAS, KRASP1 pseudogene
+9
+1/9 (11%)
+G6PD
+H6PD only
+20
+5/20 (25%)
+This means "0 off-target candidates" or "Clean" from this project's own screen should be read as "0 candidates BLAST's seed-based search could find," not as a guarantee of true specificity — a materially different, more honest claim, and the single most important limitation of this project.
+What the four genes do and do not show about paralogs. KRAS confirms the mechanism directly: its off-target risk came from a near-identical pseudogene (KRASP1, found by BLAST) and a true paralog (NRAS, found only by CRISPOR). But across genes, agreement rates do not track paralog count: the paralog-poor G6PD (25%) and the paralog-free MUTYH (15%) fall in the same range as the paralog-rich KRAS (11%). With four genes, different shortlist sizes, and PIP4K2C's small hand-picked sample, this project cannot claim that paralog count predicts CRISPOR-detected off-target risk. What it shows consistently is that a word_size=7 BLAST screen alone under-reports close off-targets, whatever the gene.
+How genetics and bioinformatics are integrated
+Genetics
+Bioinformatics
+Cas9 needs an NGG PAM next to the target
+String scan of both strands using reverse complement
+Guide efficiency depends on GC content
+GC filter and scoring with Bio.SeqUtils
+Coding exons, especially early ones, give the best knockouts
+GenBank feature parsing, exon-based filtering and ranking
+Mismatches near the PAM (seed region) block cutting most strongly
+Seed-weighted mismatch counting (Phase 1)
+A frameshift near the last exon may escape nonsense-mediated decay
+Cut-position rule excluding NMD-escape zones (Phase 2/3)
+Cutting near a splice junction risks abnormal splicing
+Minimum distance-from-exon-edge filter (Phase 2/3)
+Off-target cuts cause unwanted mutations
+Genome-wide comparison against all NGG sites (Phase 1), genomic-only BLAST with sequence-verified self-hit exclusion (Phase 2/3)
+Genes with close paralogs are inherently harder to target uniquely
+Cross-gene comparison of off-target rates: KRAS confirms the mechanism (pseudogene hit by BLAST, NRAS exon hit by CRISPOR), but agreement rates across PIP4K2C, MUTYH, KRAS and G6PD do not track paralog count
+Common sequence variants (G6PD is highly polymorphic) can stop a guide from cutting
+CRISPOR's variant display read per guide; guides overlapping a known variant are excluded from the final G6PD recommendation
+Published tools are the field's benchmark
+Comparison against CRISPOR's own scores and off-target calls (Phase 3, all human genes)
+Run it
 pip install -r requirements.txt
 # open each fetch/blast script and set Entrez.email to your own email address
 
@@ -266,30 +407,20 @@ python src/case4/kras_exon_scoring.py
 python src/case4/kras_blast_offtargets.py
 python src/case4/kras_plot_results_colab.py    # Colab: prompts for input files, downloads outputs
 python src/case4/kras_compare_crispor.py
-```
 
-Run scripts from the repository root; inputs/outputs are read from and written to the current folder. Large genome files (`ecoli_genome.gb`, `pip4k2c_region.gb`, `mutyh_region.gb`, `kras_region.gb`) are git-ignored, except a saved copy under `data/` kept for reproducibility.
-
-## Limitations
-
-- **This project's BLAST-based off-target screen (`word_size=7`) systematically misses off-targets where 1-2 mismatches are spread across the guide, confirmed across all three human genes checked (PIP4K2C, MUTYH, KRAS) via CRISPOR validation, with agreement rates falling from 60% to 15% to 11%.** A "0 off-target candidates" or "Clean" result from this project's own screen means no 7-bp-seedable hit was found, not that the guide is truly free of off-targets. This is the project's central methodological finding, not a per-gene quirk.
-- The scores are a simple rule of thumb, not a validated efficiency model -- confirmed directly in Phase 3, where CRISPOR flagged several top-scoring guides "Inefficient."
-- Phase 1's off-target screen checks NGG sites only, up to 4 mismatches, no indels, in a single genome (this search is exhaustive, unlike the BLAST-based approach used from Case study 2 onward, so the word_size limitation above does not apply to Case study 1).
-- Self-match detection (Case studies 2-4) compares hit sequence against the gene directly, which is more reliable than accession/coordinate matching alone, but still not a full genome alignment.
-- Guides have not been tested in the lab.
-
-## Roadmap
-
-- [x] **Case study 1:** core pipeline built and validated on *E. coli lacZ*
-- [x] **Case study 2:** exon-aware targeting on human PIP4K2C, genomic BLAST off-target screen, validated against CRISPOR
-- [x] **Case study 3:** exon-aware targeting on human MUTYH, validated against CRISPOR -- revealed the project's central BLAST-sensitivity limitation
-- [x] **Case study 4:** exon-aware targeting on human KRAS, validated against CRISPOR -- confirmed the paralog hypothesis via both a KRASP1 pseudogene hit (own screen) and an NRAS exon hit (CRISPOR only)
-- [ ] **Case study 5:** G6PD (X-linked, Xq28, paralog-poor metabolic enzyme) -- planned, to complete the 3-autosomal + 1-X-linked comparison
-
-## Author
-
-Soumojit Ghosh, B.Sc. Biotechnology (Honours with Research), St. Xavier's College, Burdwan.
-
-## License
-
-MIT
+# Case study 5: human G6PD
+python src/case5/g6pd_fetch.py
+python src/case5/g6pd_exon_guides.py
+python src/case5/g6pd_exon_scoring.py
+python src/case5/g6pd_blast_offtargets.py
+python src/case5/g6pd_retry_flagged.py         # re-verifies flagged guides; set Entrez.email first
+python src/case5/g6pd_plot_results_colab.py    # Colab: prompts for input files, downloads outputs
+python src/case5/g6pd_compare_crispor.py
+Run scripts from the repository root; inputs/outputs are read from and written to the current folder. Large genome files (ecoli_genome.gb, pip4k2c_region.gb, mutyh_region.gb, kras_region.gb) are git-ignored, except a saved copy under data/ kept for reproducibility.
+Limitations
+This project's BLAST-based off-target screen (word_size=7) systematically misses off-targets where 1-2 mismatches are spread across the guide, confirmed across all four human genes checked (PIP4K2C, MUTYH, KRAS, G6PD) via CRISPOR validation, with agreement rates of 60%, 15%, 11% and 25%. A "0 off-target candidates" or "Clean" result from this project's own screen means no 7-bp-seedable hit was found, not that the guide is truly free of off-targets. This is the project's central methodological finding, not a per-gene quirk.
+BLAST hit-list saturation (G6PD). The screen requests the top 50 BLAST alignments per guide. For G6PD, every one of the 50 alignments returned for the 7 guides re-checked was a G6PD record, so weaker off-target sites may lie beyond the list. A genomic-records-only, larger-hit-list rerun (settings are in g6pd_retry_flagged.py) has not yet been run across all 20 guides; G6PD "Clean" calls are provisional until it is.
+Agreement rates are not strictly comparable across genes: PIP4K2C's 5 guides were the hand-picked top "Clean" ones, KRAS had only 9 candidates, and MUTYH and G6PD had 20 each. With four genes, no conclusion about paralog count can be drawn.
+CRISPOR results were read by hand from its results table (no batch API suited to a tablet workflow), then cross-checked against the shortlist CSV for exon and score; transcription errors are possible even with that check.
+Known sequence variants shown by CRISPOR can overlap a guide (four G6PD shortlisted guides do); a guide overlapping a variant may not cut in carriers.
+Exon numbers count coding exons only, so they differ from literature exon numbering for genes with a non-coding first exon (e.g. G6PD).
