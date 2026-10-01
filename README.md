@@ -9,68 +9,6 @@ The overall workflow of CRISPR-GuideDesigner, from NCBI gene-region retrieval an
 
 «Figure: General workflow of CRISPR-GuideDesigner. The pipeline processes one gene at a time, identifies coding-exon-targeting guides, ranks them using custom scoring, performs BLAST-based off-target screening, and validates shortlisted guides against CRISPOR before final selection.»
 
-Workflow
-
-NCBI Gene Region
-       │
-       ▼
-Coding-Exon Table + CDS Self-Checks
-       │
-       ▼
-NGG PAM Scanning
-       │
-       ▼
-20-nt Guide Extraction
-       │
-       ▼
-Coding-Exon Cut-Site Filtering
-       │
-       ▼
-Guide Filtering
- ├── GC: 40–60%
- ├── No TTTT / GGGG
- ├── Shared curated exon
- ├── Outside NMD-escape zones
- └── ≥5 bp from splice edge
-       │
-       ▼
-Custom Guide Scoring
- ├── GC content: 40%
- ├── CDS position: 40%
- └── Exon-edge distance: 20%
-       │
-       ▼
-Top ≤20 Spaced Guides
-       │
-       ▼
-BLAST Off-Target Screening
- ├── Genomic-only BLAST
- ├── word_size = 7
- ├── Remove self-hits by sequence
- └── Check adjacent NGG PAM
-       │
-       ▼
-BLAST Verdict
- ├── Clean
- ├── Low risk
- └── AT RISK
-       │
-       ▼
-CRISPOR Validation
- ├── MIT specificity
- ├── CFD specificity
- └── 0 / 1 / 2 / 3 / 4 mismatch counts
-       │
-       ▼
-Agreement Check
- ├── No hits at 1–2 mismatches
- └── MIT ≥ 50
-       │
-       ▼
-Known-Variant Filtering
-       │
-       ▼
-Final CRISPR Guides
 
 Important
 
