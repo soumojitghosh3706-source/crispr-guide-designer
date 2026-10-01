@@ -1,0 +1,2 @@
+guide,accession,hit_title,locus_start,locus_end,hit_strand,best_mismatches,pam,has_pam,duplicate_record_count,locus_id
+GTGTGTATCCGACTGATGGA,NG_054109,Homo sapiens VISTA enhancer hs2223 (LOC110121496) on chromosome 10,730,749,+,2,ATG,False,1,NG_054109:730-749

@@ -1,0 +1,8 @@
+guide,old_verdict,new_verdict,changed,hsps_total,n_self,n_nonself_kept_loci,n_excluded_close_review,category_counts
+ATCATCGTGGAGAAGCCCTT,Clean,Clean,no,52,52,0,0,{'SELF': 52}
+ATGTTGTCCCGGTTCCAGAT,Clean,Clean,no,50,50,0,0,{'SELF': 50}
+CTTGAAGGTGAGGATAACGC,Clean,Clean,no,50,50,0,0,{'SELF': 50}
+AGGAGATGTGGTTGGACAGC,Clean,Clean,no,50,50,0,0,{'SELF': 50}
+GATCTGGTCCTCACGGAACA,Clean,Clean,no,50,50,0,0,{'SELF': 50}
+TACCGCATCGACCACTACCT,Clean,Clean,no,50,50,0,0,{'SELF': 50}
+CTCACCTTCAAGGAGCCCTT,Clean,Clean,no,50,50,0,0,{'SELF': 50}

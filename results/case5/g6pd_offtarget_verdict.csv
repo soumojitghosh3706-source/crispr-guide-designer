@@ -1,0 +1,21 @@
+guide,verdict,details,genomic_hits,unique_loci,pam_positive_loci
+GTGTGTATCCGACTGATGGA,Low risk,"1 unique genomic locus/loci, none with canonical NGG PAM.",1,1,0
+CCCGAAAACACCTTCATCGT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+AGAAGGGCTCACTCTGTTTG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GCAGGACTCGTGAATGTTCT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+ATCATCGTGGAGAAGCCCTT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+ATGTTGTCCCGGTTCCAGAT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+CTTGAAGGTGAGGATAACGC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+ATCACGGACGTCATCTGAGT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GGTAGATCTTCTTCTTGGCC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GAAATGCATCTCAGAGGTGC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+AGAGGAGAAGCTCAAGCTGG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+CTTTGCCCGCAACTCCTATG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GGGCATTCATGTGGCTGTTG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+AGGAGATGTGGTTGGACAGC,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GATCTGGTCCTCACGGAACA,Clean,No qualifying non-self genomic locus detected.,0,0,0
+TACCGCATCGACCACTACCT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+CTCACCTTCAAGGAGCCCTT,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GACACAGCATCTGCAGTAGG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+GACACACTTACCAGATGGTG,Clean,No qualifying non-self genomic locus detected.,0,0,0
+TTTCGGGCAGAAGGCCATCC,Clean,No qualifying non-self genomic locus detected.,0,0,0
