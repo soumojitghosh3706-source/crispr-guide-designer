@@ -1,5 +1,9 @@
 # CRISPR-GuideDesigner
 
+<p align="center">
+  <img src="CRISPR-GuideDesigner-banner.png" alt="CRISPR-GuideDesigner" width="100%">
+</p>
+
 A Python/Biopython pipeline that designs and ranks SpCas9 guide RNAs for a target gene, screens them for off-target sites, and validates the top picks against a published tool (CRISPOR).
 ## CRISPR-GuideDesigner Workflow
 
