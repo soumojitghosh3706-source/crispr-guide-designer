@@ -469,7 +469,7 @@ Some final primer pairs were entered from redesign outputs and Primer-BLAST resu
 
 ## 15. Expected experimental readout
 
-![Expected T7E1 products](figures/expected_t7e1_gel_schematic.png)
+![Expected T7E1 products](wetlab_design/figures/expected_t7e1_gel_schematic.png)
 
 The predicted T7E1 interpretation is:
 
