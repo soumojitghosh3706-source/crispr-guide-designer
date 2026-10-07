@@ -46,7 +46,7 @@ Predicted T7E1 readout
 Sanger sequencing / indel-analysis plan
 ```
 
-![CRISPR-GuideDesigner Workflow](results/workflow.png)
+![CRISPR-GuideDesigner Workflow](results/Workflow.png)
 
 **Figure:** End-to-end workflow from NCBI retrieval and exon-aware guide design through off-target screening, CRISPOR validation, and downstream experimental design.
 
