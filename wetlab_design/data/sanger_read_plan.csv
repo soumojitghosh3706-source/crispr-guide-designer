@@ -1,0 +1,12 @@
+guide_id,gene,guide_seq,guide_strand,fwd_primer,rev_primer,amplicon_bp,cut_dist_from_F_primer_3prime_bp,F_read_quality_for_cut,cut_dist_from_R_primer_3prime_bp,R_read_quality_for_cut,recommended_read,shared_primers_with,single_read_pick_if_only_one
+PIP4K2C_g2,PIP4K2C,CTTCGTTGTCCACACTGACT,-,PIP4K2C_g2_F,PIP4K2C_g2_R,665,242,good,380,good,both (F and R),,F
+PIP4K2C_g3,PIP4K2C,ATGCTTCTTCTTGGTCTTGG,-,PIP4K2C_g3_F,PIP4K2C_g3_R,722,397,good,281,good,both (F and R),,R
+MUTYH_g1,MUTYH,TGGGCTACTATTCTCGTGGC,-,MUTYH_g1_F,MUTYH_g1_R,704,391,good,272,good,both (F and R),,R
+MUTYH_g2,MUTYH,TGGTGGATGGCAACGTAGCA,-,MUTYH_g2_F,MUTYH_g2_R,679,375,good,262,good,both (F and R),,R
+MUTYH_g3,MUTYH,TGCAGGGTCTCTGCTGTACG,+,MUTYH_g1_F,MUTYH_g1_R,704,253,good,410,good,both (F and R),MUTYH_g1,F
+KRAS_g1,KRAS,CTGAATTAGCTGTATCGTCA,+,KRAS_g1_F,KRAS_g1_R,708,238,good,426,good,both (F and R),,F
+G6PD_g1,G6PD,ATCACGGACGTCATCTGAGT,+,G6PD_g1_F,G6PD_g1_R,690,218,good,429,good,both (F and R),,F
+G6PD_g2,G6PD,CCCGAAAACACCTTCATCGT,-,G6PD_g2_F,G6PD_g2_R,748,284,good,419,good,both (F and R),,F
+G6PD_g3,G6PD,GATCTGGTCCTCACGGAACA,+,G6PD_g34_F,G6PD_g34_R,701,438,good,220,good,both (F and R),,R
+G6PD_g4,G6PD,TACCGCATCGACCACTACCT,-,G6PD_g34_F,G6PD_g34_R,701,404,good,254,good,both (F and R),G6PD_g3,R
+G6PD_g5,G6PD,GTGTGTATCCGACTGATGGA,+,G6PD_g5_F,G6PD_g5_R,637,188,good,406,good,both (F and R),,R

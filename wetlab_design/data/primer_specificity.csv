@@ -1,0 +1,10 @@
+pair,guides,forward_primer,reverse_primer,intended_product_bp,intended_location_GRCh38,primer_blast_verdict,notes
+KRAS_g1,KRAS_g1,ACATCATGGACCCTGACATACTC,AGGGTGTAGAGCACTGTGAAG,708,chr12:25245066-25245773,Clean,Single product on chr12.
+G6PD_g1,G6PD_g1,TTCCCTGGTCACATAGTGACTG,TTTGGGATCATCCGGTGAGAG,690,chrX:154533359-154534048,Low risk,Weak 560 bp product on chr13 (primers have 5 and 4 mismatches); use 60-62 C annealing.
+G6PD_g2,G6PD_g2,CATGACACCCAACTATGATTGGC,TTCTGTCGTCCCTTGGTTCTAC,748,chrX:154535697-154536444,Clean,Single product on chrX.
+G6PD_g34,G6PD_g3 + G6PD_g4,CCCAAGATAGGGAAGAGTAGCC,AGGGTCATCTGGGAACACAAG,701,chrX:154533951-154534651,Low risk,Other products need 4+ mismatches per primer and are >=1127 bp; only the first part of the product list was reviewed.
+G6PD_g5,G6PD_g5,GCATATGCACACCAGGTAGAG,TACAGTCGGGAATGAGATGGTC,637,chrX:154545868-154546504,Clean,Single product on chrX.
+MUTYH_g1,MUTYH_g1 + MUTYH_g3,AACATCCTACCAGAGCTGCTG,GAGGAAGGGAAGGGTCATGG,704,chr1:45332381-45333084,Low risk,Weak products only (3+ mismatches per primer).
+MUTYH_g2,MUTYH_g2,TAAGAGCTGTTCCTGCTCCAC,GGTAGGAACCCAGGAGTCTTG,679,chr1:45332066-45332744,Low risk,Weak products only; nearest in size is 713 bp on chr9.
+PIP4K2C_g2,PIP4K2C_g2,TGGAAGGAATCAGAGGAAAGGG,GAGTGGCCTCTCCATCCTAAG,665,chr12:57598860-57599524,Low risk,Weak products only; 414 bp (chrX) and 471 bp (chr1) need 4-5 mismatches per primer.
+PIP4K2C_g3,PIP4K2C_g3,AAAGAAGCCCTAGACCTTGGG,GTGGAGCAGTAAAGAACTGTTGG,722,chr12:57590951-57591672,Low risk,Weak products only (4-6 mismatches per primer).
