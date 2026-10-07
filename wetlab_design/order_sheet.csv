@@ -1,0 +1,43 @@
+type,name,sequence_5to3,length,for_guide,tm_c,notes
+cloning_oligo,PIP4K2C_g1_top,CACCGCAATGCCAAATCGATCACGG,25,PIP4K2C_g1,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,PIP4K2C_g1_bot,AAACCCGTGATCGATTTGGCATTGC,25,PIP4K2C_g1,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,PIP4K2C_g2_top,CACCGCTTCGTTGTCCACACTGACT,25,PIP4K2C_g2,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,PIP4K2C_g2_bot,AAACAGTCAGTGTGGACAACGAAGC,25,PIP4K2C_g2,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,PIP4K2C_g3_top,CACCGATGCTTCTTCTTGGTCTTGG,25,PIP4K2C_g3,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,PIP4K2C_g3_bot,AAACCCAAGACCAAGAAGAAGCATC,25,PIP4K2C_g3,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,MUTYH_g1_top,CACCGTGGGCTACTATTCTCGTGGC,25,MUTYH_g1,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,MUTYH_g1_bot,AAACGCCACGAGAATAGTAGCCCAC,25,MUTYH_g1,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,MUTYH_g2_top,CACCGTGGTGGATGGCAACGTAGCA,25,MUTYH_g2,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,MUTYH_g2_bot,AAACTGCTACGTTGCCATCCACCAC,25,MUTYH_g2,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,MUTYH_g3_top,CACCGTGCAGGGTCTCTGCTGTACG,25,MUTYH_g3,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,MUTYH_g3_bot,AAACCGTACAGCAGAGACCCTGCAC,25,MUTYH_g3,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,KRAS_g1_top,CACCGCTGAATTAGCTGTATCGTCA,25,KRAS_g1,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,KRAS_g1_bot,AAACTGACGATACAGCTAATTCAGC,25,KRAS_g1,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g1_top,CACCGATCACGGACGTCATCTGAGT,25,G6PD_g1,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g1_bot,AAACACTCAGATGACGTCCGTGATC,25,G6PD_g1,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g2_top,CACCGCCCGAAAACACCTTCATCGT,25,G6PD_g2,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g2_bot,AAACACGATGAAGGTGTTTTCGGGC,25,G6PD_g2,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g3_top,CACCGATCTGGTCCTCACGGAACA,24,G6PD_g3,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g3_bot,AAACTGTTCCGTGAGGACCAGATC,24,G6PD_g3,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g4_top,CACCGTACCGCATCGACCACTACCT,25,G6PD_g4,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g4_bot,AAACAGGTAGTGGTCGATGCGGTAC,25,G6PD_g4,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g5_top,CACCGTGTGTATCCGACTGATGGA,24,G6PD_g5,,"pX330 (BbsI) top oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+cloning_oligo,G6PD_g5_bot,AAACTCCATCAGTCGGATACACAC,24,G6PD_g5,,"pX330 (BbsI) bottom oligo; order desalted, no 5' phosphate (anneal + phosphorylate in lab)"
+genotyping_primer,PIP4K2C_g2_F,TGGAAGGAATCAGAGGAAAGGG,22,PIP4K2C_g2,59.9,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,PIP4K2C_g2_R,GAGTGGCCTCTCCATCCTAAG,21,PIP4K2C_g2,60.0,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,PIP4K2C_g3_F,AAAGAAGCCCTAGACCTTGGG,21,PIP4K2C_g3,60.0,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,PIP4K2C_g3_R,GTGGAGCAGTAAAGAACTGTTGG,23,PIP4K2C_g3,59.8,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,MUTYH_g1_F,AACATCCTACCAGAGCTGCTG,21,MUTYH_g1 + MUTYH_g3,60.2,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,MUTYH_g1_R,GAGGAAGGGAAGGGTCATGG,20,MUTYH_g1 + MUTYH_g3,60.4,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,MUTYH_g2_F,TAAGAGCTGTTCCTGCTCCAC,21,MUTYH_g2,60.1,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,MUTYH_g2_R,GGTAGGAACCCAGGAGTCTTG,21,MUTYH_g2,60.2,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,KRAS_g1_F,ACATCATGGACCCTGACATACTC,23,KRAS_g1,60.0,Primer-BLAST: Clean; standard desalted
+genotyping_primer,KRAS_g1_R,AGGGTGTAGAGCACTGTGAAG,21,KRAS_g1,59.8,Primer-BLAST: Clean; standard desalted
+genotyping_primer,G6PD_g1_F,TTCCCTGGTCACATAGTGACTG,22,G6PD_g1,59.8,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,G6PD_g1_R,TTTGGGATCATCCGGTGAGAG,21,G6PD_g1,60.0,Primer-BLAST: Low risk; standard desalted
+genotyping_primer,G6PD_g2_F,CATGACACCCAACTATGATTGGC,23,G6PD_g2,60.1,Primer-BLAST: Clean; standard desalted
+genotyping_primer,G6PD_g2_R,TTCTGTCGTCCCTTGGTTCTAC,22,G6PD_g2,60.0,Primer-BLAST: Clean; standard desalted
+genotyping_primer,G6PD_g34_F,CCCAAGATAGGGAAGAGTAGCC,22,G6PD_g3 + G6PD_g4,59.4,Primer-BLAST: Low risk; redesigned pair; standard desalted
+genotyping_primer,G6PD_g34_R,AGGGTCATCTGGGAACACAAG,21,G6PD_g3 + G6PD_g4,59.7,Primer-BLAST: Low risk; redesigned pair; standard desalted
+genotyping_primer,G6PD_g5_F,GCATATGCACACCAGGTAGAG,21,G6PD_g5,58.5,Primer-BLAST: Clean; redesigned pair; standard desalted
+genotyping_primer,G6PD_g5_R,TACAGTCGGGAATGAGATGGTC,22,G6PD_g5,59.3,Primer-BLAST: Clean; redesigned pair; standard desalted
